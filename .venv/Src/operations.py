@@ -1,0 +1,1 @@
+# Implementazione delle singole operazioni

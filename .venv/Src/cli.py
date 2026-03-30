@@ -1,0 +1,1 @@
+# Il ciclo principale dell'applicazione

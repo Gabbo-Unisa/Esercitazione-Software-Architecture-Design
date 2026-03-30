@@ -1,0 +1,1 @@
+# Interpreta l'input testuale dell'utente

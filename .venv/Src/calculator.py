@@ -1,0 +1,1 @@
+# Il "motore" che mantiene lo stato (risultato precedente, memoria)
