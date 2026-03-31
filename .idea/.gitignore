@@ -1,8 +1,32 @@
-# Default ignored files
+# --- Regole attuali (IntelliJ/PyCharm specifiche) ---
 /shelf/
 /workspace.xml
-# Editor-based HTTP Client requests
 /httpRequests/
-# Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+
+# --- Integrazione JetBrains (La cartella che vedevamo nello screenshot) ---
+.idea/
+*.iml
+*.iws
+
+# --- Python (Fondamentale) ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# --- Ambienti Virtuali (La cassetta degli attrezzi) ---
+.venv/
+venv/
+ENV/
+env/
+
+# --- Sistema Operativo ---
+.DS_Store
+Thumbs.db
+
+# --- Variabili d'ambiente (Dati sensibili/Password) ---
+.env
