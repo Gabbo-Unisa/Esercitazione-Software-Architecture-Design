@@ -27,6 +27,12 @@ def main():
     print("Avvio Calcolatrice Scientifica...")
     
     while True:
+        contesto = calc.get_contesto_recente()
+        if contesto:
+            print("\n" + "-" * 10 + " ULTIME OPERAZIONI " + "-" * 10)
+            for op in contesto:
+                print(f" > {op}")
+
         print("\n" + "="*35)
         # Mostra lo stato dell'accumulatore (Risultato corrente)
         if calc.has_result():
@@ -82,6 +88,13 @@ def main():
                     print(f"Valore in uso: {op1}")
                 else:
                     op1 = leggi_operando("Inserisci il numero (o 'MR'): ", calc)
+
+                # Definizione dei simboli per la cronologia
+                mapping_simboli = {
+                    '1': '+', '2': '-', '3': '*', '4': '/',
+                    '5': 'SIN', '6': 'COS', '7': 'TAN', '8': 'LOG'
+                }
+                simbolo = mapping_simboli[scelta]
                 
                 # Operazioni Aritmetiche Base (richiedono 2° operando)
                 if scelta in ['1', '2', '3', '4']:
@@ -94,6 +107,8 @@ def main():
                     elif scelta == '2': risultato = operations.sottrazione(op1, op2)
                     elif scelta == '3': risultato = operations.moltiplicazione(op1, op2)
                     elif scelta == '4': risultato = operations.divisione(op1, op2)
+
+                    calc.aggiungi_operazione(op1, simbolo, op2, risultato)
                 
                 # Operazioni Scientifiche
                 else:
@@ -103,6 +118,9 @@ def main():
                     elif scelta == '8': risultato = operations.log(op1)
                     
                     risultato = round(risultato, 4)
+
+                    # AGGIORNAMENTO CRONOLOGIA
+                    calc.aggiungi_operazione(op1, simbolo, None, risultato)
                 
                 # Aggiornamento stato
                 calc.set_result(risultato)

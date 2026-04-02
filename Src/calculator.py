@@ -5,7 +5,8 @@ class Calculator:
         # Inizializziamo a None per indicare che non c'è ancora un calcolo in memoria
         self._current_value = None
         # Inizializziamo il registro di memoria a vuoto
-        self._memory = None 
+        self._memory = None
+        self.history = []  # Memorizza le stringhe delle operazioni
 
     @property
     def current_value(self):
@@ -44,3 +45,24 @@ class Calculator:
     def has_memory(self) -> bool:
         """Verifica se c'è un valore salvato in memoria"""
         return self._memory is not None
+
+    def aggiungi_operazione(self, op1, operatore, op2=None, risultato=None):
+        """
+        Crea la stringa dell'operazione e la aggiunge alla cronologia.
+        Gestisce sia operazioni a due operandi che a un operando.
+        """
+        if op2 is not None:
+            # Esempio: "5.0 + 3.0 = 8.0"
+            stringa_op = f"{op1} {operatore} {op2} = {risultato}"
+        else:
+            # Esempio: "SIN(90.0) = 1.0"
+            stringa_op = f"{operatore}({op1}) = {risultato}"
+
+        self.history.append(stringa_op)
+
+    def get_contesto_recente(self):
+        """
+        Ritorna le ultime 3 operazioni (US6).
+        Se sono meno di 3, ritorna quelle disponibili.
+        """
+        return self.history[-3:]
